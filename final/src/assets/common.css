@@ -1,0 +1,13 @@
+.tips {
+  margin: 10px;
+  color: rgb(133, 133, 133);
+  display: block;
+}
+
+.tips:hover {
+  color: rgb(5, 124, 204);
+}
+
+.btn-full {
+  width: 100%;
+}
