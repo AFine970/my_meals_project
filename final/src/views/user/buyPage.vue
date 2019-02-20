@@ -22,11 +22,15 @@
       </el-tabs>
     </el-main>
     <div>
-      <el-button @click="seeOrder"><i class="el-icon-goods"></i></el-button>
+      <el-badge :value="countNum"
+                :max="10"
+                class="item">
+        <el-button @click="seeOrder"><i class="el-icon-goods"></i></el-button>
+      </el-badge>
+
       <el-button v-if="isLook"
                  @click="submitOrder"
-                 type="primary"
-                 v-loading.fullscreen.lock="loading">立即下单</el-button>
+                 type="primary">立即下单</el-button>
     </div>
     <shop-car v-if="isShow"
               :orderData="orderData"
@@ -54,7 +58,7 @@ export default {
       activeName: '人气热销',
 
       foodList: [],
-
+      allSelNum: [],
       orderData: []
     }
   },
@@ -64,6 +68,9 @@ export default {
   computed: {
     showList() {
       return this.foodList.filter(item => item.foodRegion === this.activeName)
+    },
+    countNum() {
+      return this.allSelNum.length
     }
   },
   methods: {
@@ -91,6 +98,10 @@ export default {
             totalMoney: this.totalMoney
           }
           // console.log('>>>>>>', bus)
+          if (this.orderData.length === 0) {
+            this.$message({ type: 'error', message: '不能提交空订单' })
+            return false
+          }
           api.submitOrder(bus).then(response => {
             if (response.data.success === true) {
               this.$router.push('/buylist')
@@ -124,7 +135,9 @@ export default {
 
     addtoCar(item) {
       this.$message({ type: 'success', message: '已添加到购物车' })
+      this.allSelNum.push(item)
       let busArr = this.orderData
+      // console.log(this.allSelNum.length)
       if (busArr.some(each => each === item)) {
         item.selNum++
       } else {

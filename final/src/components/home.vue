@@ -1,19 +1,25 @@
 <template>
-  <el-container class="section">
-    <h2>选你所爱</h2>
-    <el-header>
-      <el-input v-model="username"
-                placeholder="未登录..."
-                disabled>
-        <template slot="prepend">
-          <i>账户名</i>
-        </template>
-        <el-button slot="append"
-                   @click="logout">注销</el-button>
-      </el-input>
-    </el-header>
-    <search></search>
-  </el-container>
+  <div>
+    <el-container class="section">
+      <h2>选你所爱</h2>
+      <el-header>
+        <el-input v-model="username"
+                  placeholder="未登录..."
+                  disabled>
+          <template slot="prepend">
+            <i>用户名</i>
+          </template>
+          <el-button slot="append"
+                     @click="tobuyList">我的订单</el-button>
+          <el-button slot="append"
+                     @click="logout">注销</el-button>
+        </el-input>
+      </el-header>
+      <search></search>
+    </el-container>
+    <span @click="toLogin"
+          class="tips">你是商家？请来这里</span>
+  </div>
 </template>
 <script>
 import search from '../views/user/search'
@@ -29,7 +35,6 @@ export default {
   },
   methods: {
     logName() {
-      // window.console.log(this.$store.state)
       let { radio } = this.$store.state
       if (radio === 'user') {
         this.username = this.$store.state.username
@@ -52,6 +57,19 @@ export default {
           message: '注销失败'
         })
       }
+    },
+    toLogin() {
+      this.$store.dispatch('UserLogout')
+      this.$router.push('login')
+    },
+    tobuyList() {
+      // console.log(this.username)
+      if (this.username) {
+        this.$router.push('buylist')
+      } else {
+        this.$message('请登录后再查看')
+        this.$router.push('login')
+      }
     }
   }
 }
@@ -66,7 +84,7 @@ export default {
 }
 .section .el-header .el-input {
   margin: 10px;
-  width: 22%;
+  width: 30%;
   float: right;
 }
 </style>

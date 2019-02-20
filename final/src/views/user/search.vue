@@ -42,7 +42,7 @@ export default {
         setTimeout(() => {
           this.loading = false
           this.$router.push('/buy')
-        }, 500)
+        }, 750)
         let data = this.selectItem
         this.$store.dispatch('Company', data)
       } else {
@@ -92,7 +92,7 @@ export default {
 </script>
 <style scoped>
 .search {
-  background: #f7f8c9;
+  background: #9499e4;
 }
 .el-autocomplete {
   margin: 220px 0px 220px 0px;

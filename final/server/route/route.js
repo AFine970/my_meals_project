@@ -13,12 +13,12 @@ const list = require('../controller/list')
 //通用
 childRouter.post('/login', userController.Login)
 childRouter.post('/register', userController.Register)
-childRouter.post('/getAllcompanyName', shopController.getAllcompanyName)
 
 // 用户
 childRouter.post('/showAllFood', buypageController.showAllFood)
 
 // 商家
+childRouter.post('/getAllcompanyName', shopController.getAllcompanyName)
 childRouter.post('/submitShopInfo', shopController.submitShopInfo)
 childRouter.post('/modifyShopInfo', shopController.modifyShopInfo)
 childRouter.post('/getShopInfo', checkToken, shopController.getShopInfo)
@@ -28,7 +28,7 @@ childRouter.post('/submitFoodInfo', foodController.submitFoodInfo)
 childRouter.post('/deleteFoodList', foodController.deleteFoodList)
 
 // 订单管理
-childRouter.post('/submitOrder', list.submitOrder)
+childRouter.post('/submitOrder', checkToken, list.submitOrder)
 childRouter.post('/getUserCurrentOrder', list.getUserCurrentOrder)
 childRouter.post('/getUserHistoryOrder', list.getUserHistoryOrder)
 

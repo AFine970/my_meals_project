@@ -1,6 +1,6 @@
 <template>
   <div class="order-list">
-    <el-dialog title="订单详情"
+    <el-dialog title="我的购物车"
                :visible.sync="isShowOrder"
                @close="handleClose">
       <el-table :data="orderData"
@@ -21,7 +21,7 @@
           </template>
         </el-table-column>
       </el-table>
-      <div>
+      <div class="money-style">
         <span>总金额</span>
         <i>￥{{sumMoney}}</i>
       </div>
@@ -67,5 +67,16 @@ export default {
 .order-list {
   width: 70%;
   margin: 0 auto;
+}
+.money-style {
+  margin: 10px;
+}
+.money-style i {
+  font-weight: bold;
+  font-size: 20px;
+  color: crimson;
+}
+.money-style span {
+  font-size: 20px;
 }
 </style>

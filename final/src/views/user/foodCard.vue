@@ -38,6 +38,7 @@ export default {
   width: 100%;
 }
 .menu-card-des i {
+  font-weight: bold;
   color: crimson;
 }
 </style>

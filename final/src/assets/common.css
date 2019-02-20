@@ -6,6 +6,7 @@
 
 .tips:hover {
   color: rgb(5, 124, 204);
+  cursor: pointer;
 }
 
 .btn-full {

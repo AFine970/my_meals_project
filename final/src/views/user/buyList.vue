@@ -1,6 +1,6 @@
 <template>
   <div class="buy-list">
-    <h3>我的订单</h3>
+    <h2>我的订单</h2>
     <el-tabs type="border-card"
              v-model="activeName">
       <el-tab-pane label="当前订单"
@@ -85,7 +85,6 @@ export default {
   data() {
     return {
       activeName: '当前订单',
-      // tableData: [],
       tableData1: [],
       tableData2: []
     }

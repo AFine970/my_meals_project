@@ -2,17 +2,17 @@ const mongoose = require('mongoose')
 
 const buyList = mongoose.Schema({
   buyerId: String,
+  orderId: String,
+  companyName: String,
+  foodData: Array,
+  totalMoney: String,
   orderDate: {
     type: Date,
     default: Date.now()
   },
-  foodName: String,
-  selNum: String,
-  foodPrice: String,
-  totalMoney: String,
   done: {
     type: String,
-    default: 0
+    default: '未接单'
   }
 })
 
