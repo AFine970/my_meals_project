@@ -28,7 +28,7 @@ export default {
 </script>
 <style scoped>
 .main-bar {
-  width: 75%;
+  width: 70%;
   height: 550px;
   margin: 0 auto;
 }

@@ -1,7 +1,11 @@
 <template>
   <div class="buy-list">
+    <el-button class="back"
+               @click="goBack"
+               icon="el-icon-arrow-left"></el-button>
     <h2>我的订单</h2>
     <el-tabs type="border-card"
+             class="tab-card"
              v-model="activeName">
       <el-tab-pane label="当前订单"
                    name="当前订单">
@@ -82,17 +86,19 @@ export default {
   created() {
     this.loadData()
   },
+  mounted() {
+    // this.refresh()
+  },
   data() {
     return {
       activeName: '当前订单',
       tableData1: [],
-      tableData2: []
+      tableData2: [],
+
+      timer: null
     }
   },
   methods: {
-    deleteRow(index, rows) {
-      rows.splice(index, 1)
-    },
     loadData() {
       let { username } = this.$store.state
       api.getUserCurrentOrder({ username }).then(response => {
@@ -105,6 +111,14 @@ export default {
           this.tableData2 = response.data.result
         }
       })
+    },
+    goBack() {
+      this.$router.go(-1)
+    },
+    refresh() {
+      this.timer = setInterval(() => {
+        this.loadData()
+      }, 30000)
     }
   }
 }
@@ -113,6 +127,12 @@ export default {
 .buy-list {
   width: 70%;
   margin: 0 auto;
+}
+.tab-card {
+  height: 500px;
+}
+.back {
+  float: left;
 }
 </style>
 

@@ -1,6 +1,9 @@
 <template>
   <el-container class="buy-page">
     <el-header>
+      <el-button class="back"
+                 @click="goBack"
+                 icon="el-icon-arrow-left"></el-button>
       <h2>{{companyName}}</h2>
     </el-header>
     <el-main>
@@ -25,7 +28,8 @@
       <el-badge :value="countNum"
                 :max="10"
                 class="item">
-        <el-button @click="seeOrder"><i class="el-icon-goods"></i></el-button>
+        <el-button @click="seeOrder"
+                   type="info"><i class="el-icon-goods"></i></el-button>
       </el-badge>
 
       <el-button v-if="isLook"
@@ -104,9 +108,12 @@ export default {
           }
           api.submitOrder(bus).then(response => {
             if (response.data.success === true) {
+              // let isNewOrder = true
+              // this.$store.dispatch('Order', '1')
               this.$router.push('/buylist')
               this.$notify({ type: 'success', message: '下单成功' })
             } else {
+              // this.$store.dispatch('Order', '0')
               this.$notify({ type: 'error', message: '出现错误' })
               return false
             }
@@ -143,6 +150,9 @@ export default {
       } else {
         this.orderData.push(item)
       }
+    },
+    goBack() {
+      this.$router.go(-1)
     }
   }
 }
@@ -151,6 +161,10 @@ export default {
 .buy-page {
   width: 70%;
   margin: 0 auto;
+}
+.back {
+  margin-top: 20px;
+  float: left;
 }
 .tab-card {
   height: 500px;

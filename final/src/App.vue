@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <img src="./assets/header.png">
-    <router-view></router-view>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 

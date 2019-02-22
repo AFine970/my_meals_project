@@ -8,9 +8,11 @@
       <i class="el-icon-search el-input__icon"
          slot="prefix"></i>
     </el-autocomplete>
-    <el-button type="primary"
-               @click="toBuy"
-               v-loading.fullscreen.lock="loading">Go</el-button>
+    <el-badge value="hot">
+      <el-button type="primary"
+                 @click="toBuy"
+                 v-loading.fullscreen.lock="loading">Go</el-button>
+    </el-badge>
   </div>
 </template>
 <script>

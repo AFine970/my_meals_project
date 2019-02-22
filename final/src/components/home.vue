@@ -80,7 +80,7 @@ export default {
   margin: 0 auto;
 }
 .section .el-header {
-  background: #bfcad3;
+  background: #d2e7fa;
 }
 .section .el-header .el-input {
   margin: 10px;

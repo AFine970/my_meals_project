@@ -68,18 +68,21 @@ export default {
     return instance.post('/api/deleteFoodList', data)
   },
 
+  // 订单列表
   getShopCurrentOrder(data) {
     return instance.post('/api/getShopCurrentOrder', data)
   },
   getShopHistoryOrder(data) {
     return instance.post('/api/getShopHistoryOrder', data)
   },
+
   receiveOrder_User(data) {
     return instance.post('/api/receiveOrder_User', data)
   },
   receiveOrder_Shop(data) {
     return instance.post('/api/receiveOrder_Shop', data)
   },
+
   newOrder_Shop(data) {
     return instance.post('/api/newOrder_Shop', data)
   },

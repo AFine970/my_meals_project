@@ -4,7 +4,7 @@
                :visible.sync="isShowOrder"
                @close="handleClose">
       <el-table :data="orderData"
-                height="500"
+                max-height="400"
                 stripe>
         <el-table-column prop="foodName"
                          label="名称">

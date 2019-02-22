@@ -24,7 +24,7 @@
         </el-table-column>
         <el-table-column label="是否接单">
           <template slot-scope="scope">
-            <el-button @click.native.prevent="deleteRow(scope.$index, tableData1)"
+            <el-button @click.native.prevent="receiveOrder(scope.$index, tableData1)"
                        type="primary"
                        size="mini">
               接单
@@ -88,7 +88,7 @@ export default {
     this.loadData()
   },
   mounted() {
-    this.polling()
+    this.refresh()
   },
   data() {
     return {
@@ -99,13 +99,14 @@ export default {
     }
   },
   methods: {
-    deleteRow(index, rows) {
-      console.log('>>', index)
+    receiveOrder(index, rows) {
+      // console.log('>>', index)
       // console.log('>>', this.tableData1[index].orderId)
       let orderId = this.tableData1[index].orderId
       api.receiveOrder_Shop({ orderId }).then(response => {
         if (response.data.success === true) {
           api.receiveOrder_User({ orderId })
+          // api.tellUser({ isReceive: true })
           this.$notify({
             type: 'success',
             message: '接单成功'
@@ -134,22 +135,10 @@ export default {
         }
       })
     },
-    polling() {
-      // this.timer = setInterval(() => {
-      //   api.newOrder_Shop().then(response => {
-      //     if (response.data.refresh === true) {
-      //       this.$message('你有新的订单')
-      //       this.loadData()
-      //       clearInterval(this.timer)
-      //     }
-      //   })
-      // }, 5000)
-      // api.newOrder_Shop().then(response => {
-      //   if (response.data.refresh === true) {
-      //     this.$message('你有新的订单')
-      //     this.loadData()
-      //   }
-      // })
+    refresh() {
+      this.timer = setInterval(() => {
+        this.loadData()
+      }, 30000)
     }
   }
 }

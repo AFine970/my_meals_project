@@ -13,7 +13,17 @@ const mutations = {
     state.token = null
     state.radio = null
     state.username = null
-    window.sessionStorage.removeItem('token', 'radio', 'username')
+    state.companyName = null
+    state.companyId = null
+    state.companyAddress = null
+    window.sessionStorage.removeItem(
+      'token',
+      'radio',
+      'username',
+      'companyName',
+      'companyId',
+      'companyAddress'
+    )
   },
   [types.USERNAME]: (state, data) => {
     // 保存用户名
