@@ -1,5 +1,5 @@
 <template>
-  <div class="buy-list">
+  <div class="main-layout">
     <el-button class="back"
                @click="goBack"
                icon="el-icon-arrow-left"></el-button>
@@ -87,15 +87,13 @@ export default {
     this.loadData()
   },
   mounted() {
-    // this.refresh()
+    this.refresh()
   },
   data() {
     return {
       activeName: '当前订单',
       tableData1: [],
-      tableData2: [],
-
-      timer: null
+      tableData2: []
     }
   },
   methods: {
@@ -116,18 +114,18 @@ export default {
       this.$router.go(-1)
     },
     refresh() {
-      this.timer = setInterval(() => {
-        this.loadData()
-      }, 30000)
+      this.sockets.subscribe('isReceived', data => {
+        debugger
+        if (data) {
+          this.loadData()
+          this.$message({ type: 'success', message: '商家已接单' })
+        }
+      })
     }
   }
 }
 </script>
 <style scoped>
-.buy-list {
-  width: 70%;
-  margin: 0 auto;
-}
 .tab-card {
   height: 500px;
 }

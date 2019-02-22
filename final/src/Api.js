@@ -83,10 +83,6 @@ export default {
     return instance.post('/api/receiveOrder_Shop', data)
   },
 
-  newOrder_Shop(data) {
-    return instance.post('/api/newOrder_Shop', data)
-  },
-
   // 管理员
   getAllUser() {
     return instance.get('/api/getAllUser')

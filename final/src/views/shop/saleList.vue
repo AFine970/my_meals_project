@@ -95,7 +95,7 @@ export default {
       activeName: '当前订单',
       tableData1: [],
       tableData2: [],
-      timer: null
+      flag: false
     }
   },
   methods: {
@@ -106,7 +106,7 @@ export default {
       api.receiveOrder_Shop({ orderId }).then(response => {
         if (response.data.success === true) {
           api.receiveOrder_User({ orderId })
-          // api.tellUser({ isReceive: true })
+          this.$socket.emit('isReceived', true)
           this.$notify({
             type: 'success',
             message: '接单成功'
@@ -136,9 +136,12 @@ export default {
       })
     },
     refresh() {
-      this.timer = setInterval(() => {
-        this.loadData()
-      }, 30000)
+      this.sockets.subscribe('isNewOrder', data => {
+        if (data) {
+          this.loadData()
+          this.$message({ type: 'success', message: '您有新订单' })
+        }
+      })
     }
   }
 }

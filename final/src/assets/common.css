@@ -12,3 +12,9 @@
 .btn-full {
   width: 100%;
 }
+
+.main-layout {
+  width: 70%;
+  height: 550px;
+  margin: 0 auto;
+}

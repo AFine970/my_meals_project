@@ -101,15 +101,7 @@ export default {
       ]
     }
   },
-  methods: {
-    filterTag(value, row) {
-      return row.tag === value
-    },
-    filterHandler(value, row, column) {
-      const property = column['property']
-      return row[property] === value
-    }
-  }
+  methods: {}
 }
 </script>
 <style scoped>

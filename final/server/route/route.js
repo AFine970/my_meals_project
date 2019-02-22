@@ -38,13 +38,6 @@ childRouter.post('/getShopHistoryOrder', list.getShopHistoryOrder)
 childRouter.post('/receiveOrder_User', list.receiveOrder_User)
 childRouter.post('/receiveOrder_Shop', list.receiveOrder_Shop)
 
-childRouter.post('/newOrder_Shop', list.newOrder_Shop)
-
-// childRouter.post('/tellShop', list.tellShop)
-// childRouter.post('/tellUser', list.tellUser)
-
-// childRouter.get('/userGetSignal', list.userGetSignal)
-// childRouter.get('/shopGetSignal', list.shopGetSignal)
 //管理员
 childRouter.get('/getUser', checkToken, userController.GetAllUsers)
 

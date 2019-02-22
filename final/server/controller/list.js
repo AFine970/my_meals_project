@@ -171,76 +171,7 @@ const receiveOrder_User = async ctx => {
     )
   })
 }
-const arr = []
-const newOrder_Shop = async ctx => {
-  await new Promise((resolve, reject) => {
-    let len = SaleList.countDocuments((err, res) => {
-      if (err) {
-        reject(err)
-      } else {
-        arr.push(len)
-        let i = arr.length
-        if (i > 1) {
-          if (arr[i - 1] !== arr[i - 2]) {
-            ctx.body = {
-              refresh: true
-            }
-          } else {
-            ctx.body = {
-              refresh: false
-            }
-          }
-          resolve(res)
-        }
-      }
-    })
-  })
-}
-// // 有新订单告诉商家
-// const tellShop = ctx => {
-//   let isNew = ctx.request.body.isNew
-//   return isNew
-// }
 
-// const shopGetSignal = async ctx => {
-//   await new Promise((resolve, reject) => {
-//     let res = tellShop()
-//     if (res) {
-//       ctx.body = {
-//         refresh: true
-//       }
-//       resolve(res)
-//     } else {
-//       ctx.body = {
-//         refresh: false
-//       }
-//       reject()
-//     }
-//   })
-// }
-
-// // 商家接单后告诉用户
-// const tellUser = ctx => {
-//   let isReceive = ctx.request.body.isReceive
-//   return isReceive
-// }
-
-// const userGetSignal = async ctx => {
-//   await new Promise((resolve, reject) => {
-//     let res = tellUser()
-//     if (res) {
-//       ctx.body = {
-//         refresh: true
-//       }
-//       resolve(res)
-//     } else {
-//       ctx.body = {
-//         refresh: false
-//       }
-//       reject()
-//     }
-//   })
-// }
 module.exports = {
   submitOrder,
 
@@ -251,13 +182,5 @@ module.exports = {
   getShopHistoryOrder,
 
   receiveOrder_Shop,
-  receiveOrder_User,
-
-  newOrder_Shop
-
-  // tellShop,
-  // tellUser,
-
-  // shopGetSignal,
-  // userGetSignal
+  receiveOrder_User
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="order-list">
+  <div class="main-layout">
     <el-dialog title="我的购物车"
                :visible.sync="isShowOrder"
                @close="handleClose">
@@ -64,10 +64,6 @@ export default {
 </script>
 
 <style scoped>
-.order-list {
-  width: 70%;
-  margin: 0 auto;
-}
 .money-style {
   margin: 10px;
 }

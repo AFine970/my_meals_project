@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h2>我的店铺</h2>
-    <el-tabs class="main-bar"
+    <h2>店铺信息管理</h2>
+    <el-tabs class="main-layout"
              type="border-card">
       <el-tab-pane>
         <span slot="label"><i class="el-icon-document"></i>店铺信息</span>
@@ -26,10 +26,4 @@ export default {
   components: { saleList, shopInfo, foodManage }
 }
 </script>
-<style scoped>
-.main-bar {
-  width: 70%;
-  height: 550px;
-  margin: 0 auto;
-}
-</style>
+

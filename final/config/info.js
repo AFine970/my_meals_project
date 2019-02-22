@@ -1,10 +1,12 @@
 const info = {
   clientAddress: {
+    host: 'localhost',
     port: 7777
   },
   serverAddress: {
-    url: 'http://localhost:6666',
-    port: 6666
+    url: 'http://localhost:9999',
+    host: 'localhost',
+    port: 9999
   }
 }
 

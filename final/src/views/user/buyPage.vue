@@ -108,12 +108,11 @@ export default {
           }
           api.submitOrder(bus).then(response => {
             if (response.data.success === true) {
-              // let isNewOrder = true
-              // this.$store.dispatch('Order', '1')
               this.$router.push('/buylist')
+              this.$socket.emit('isNewOrder', true)
               this.$notify({ type: 'success', message: '下单成功' })
             } else {
-              // this.$store.dispatch('Order', '0')
+              this.$socket.emit('isNewOrder', false)
               this.$notify({ type: 'error', message: '出现错误' })
               return false
             }

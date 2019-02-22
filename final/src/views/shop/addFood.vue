@@ -28,6 +28,7 @@
                     prop="foodPrice">
         <el-input v-model="shopData.foodPrice"></el-input>
       </el-form-item>
+
       <el-form-item label="商品图片"
                     prop="imageUrl">
         <el-upload class="avatar-uploader"
