@@ -24,6 +24,4 @@ const showAllFood = async ctx => {
   })
 }
 
-module.exports = {
-  showAllFood
-}
+module.exports = { showAllFood }

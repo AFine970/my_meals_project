@@ -1,7 +1,7 @@
 <template>
   <div class="menu-card">
     <el-card :body-style="{ padding: '0px' }">
-      <img src="../../assets/menu.png"
+      <img :src="item.imageUrl"
            class="menu-card-img">
       <div class="menu-card-des">
         <span>{{item.foodName}}</span>
@@ -35,7 +35,8 @@ export default {
   float: left;
 }
 .menu-card-img {
-  width: 100%;
+  width: 200px;
+  height: 160px;
 }
 .menu-card-des i {
   font-weight: bold;

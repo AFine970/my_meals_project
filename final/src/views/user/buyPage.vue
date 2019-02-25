@@ -140,6 +140,7 @@ export default {
     },
 
     addtoCar(item) {
+      console.log('666', item)
       this.$message({ type: 'success', message: '已添加到购物车' })
       this.allSelNum.push(item)
       let busArr = this.orderData

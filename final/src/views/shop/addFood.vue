@@ -31,8 +31,7 @@
 
       <el-form-item label="商品图片"
                     prop="imageUrl">
-        <el-upload class="avatar-uploader"
-                   action="#"
+        <el-upload :action="uploadUrl"
                    :show-file-list="false"
                    :on-success="handleAvatarSuccess"
                    :before-upload="beforeAvatarUpload">
@@ -50,6 +49,8 @@
 
 <script>
 import api from '../../Api.js'
+const uploadAPI = '/api/uploadImg'
+
 export default {
   data() {
     var validatefoodName = (rule, value, callback) => {
@@ -78,6 +79,7 @@ export default {
       flag: false,
       isShow: true,
       imageUrl: '',
+      uploadUrl: uploadAPI,
 
       shopData: {
         userId: '',
@@ -110,51 +112,62 @@ export default {
   },
 
   methods: {
-    handleAvatarSuccess(res, file) {
-      this.imageUrl = URL.createObjectURL(file.raw)
-    },
-    beforeAvatarUpload(file) {
-      const isJPG = file.type === 'image/jpeg'
-      const isLt2M = file.size / 1024 / 1024 < 2
-
-      if (!isJPG) {
-        this.$message.error('上传头像图片只能是 JPG 格式!')
-      }
-      if (!isLt2M) {
-        this.$message.error('上传头像图片大小不能超过 2MB!')
-      }
-      return isJPG && isLt2M
-    },
     handleClose() {
       this.$emit('close', this.flag)
     },
     onSubmit(shopData) {
       let { username } = this.$store.state
       this.shopData.userId = username
+
       this.$refs[shopData].validate(valid => {
         if (valid) {
-          let bus = this.shopData
-          api.submitFoodInfo(bus).then(response => {
-            if (response.data.success === true) {
-              // window.console.log(response)
-              this.$message({
-                type: 'success',
-                message: '提交成功'
-              })
-              this.shopData = {}
-              this.flag = true
-            } else {
-              this.$message({
-                type: 'warning',
-                message: '提交失败'
-              })
-              return false
-            }
-          })
+          if (!this.imageUrl) {
+            this.$message({
+              type: 'error',
+              message: '请上传图片'
+            })
+          } else {
+            let bus = Object.assign(this.shopData, { imageUrl: this.imageUrl })
+            console.log(bus)
+            api.submitFoodInfo(bus).then(response => {
+              if (response.data.success === true) {
+                this.$message({
+                  type: 'success',
+                  message: '提交成功'
+                })
+                this.shopData = {}
+                this.imageUrl = ''
+                this.flag = true
+              } else {
+                this.$message({
+                  type: 'warning',
+                  message: '提交失败'
+                })
+                return false
+              }
+            })
+          }
         } else {
           return false
         }
       })
+    },
+    handleAvatarSuccess(res) {
+      // this.imageUrl = URL.createObjectURL(res.data.imageUrl)
+      // console.log(res)
+      this.imageUrl = res.data.imageUrl
+    },
+    beforeAvatarUpload(file) {
+      const isJPG = file.type === 'image/jpeg' || 'image/png'
+      const isLt2M = file.size / 1024 / 1024 < 1
+
+      if (!isJPG) {
+        this.$message.error('上传头像图片只能是 jpg/png 格式')
+      }
+      if (!isLt2M) {
+        this.$message.error('上传头像图片大小不能超过 1MB')
+      }
+      return isJPG && isLt2M
     }
   }
 }
@@ -162,19 +175,10 @@ export default {
 
 <style scoped>
 .add-page {
-  width: 60%;
+  width: 50%;
   margin: 0 auto;
 }
-.avatar-uploader .el-upload {
-  border: 1px dashed #d9d9d9;
-  border-radius: 6px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-.avatar-uploader .el-upload:hover {
-  border-color: #409eff;
-}
+
 .avatar-uploader-icon {
   font-size: 28px;
   color: #8c939d;

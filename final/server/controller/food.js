@@ -29,7 +29,8 @@ const submitFoodInfo = async ctx => {
     userId: ctx.request.body.userId,
     foodName: ctx.request.body.foodName,
     foodRegion: ctx.request.body.foodRegion,
-    foodPrice: ctx.request.body.foodPrice
+    foodPrice: ctx.request.body.foodPrice,
+    imageUrl: ctx.request.body.imageUrl
   })
   await new Promise((resolve, reject) => {
     food.save((err, res) => {
@@ -49,10 +50,8 @@ const submitFoodInfo = async ctx => {
 
 //删除商品
 const deleteFoodList = async ctx => {
-  // global.console.log(ctx)
   await new Promise((resolve, reject) => {
     let index = ctx.request.body.foodIndex
-    // global.console.log(index)
     FoodList.findOneAndDelete(index, (err, res) => {
       if (err) {
         ctx.body = {

@@ -9,6 +9,7 @@ const shopController = require('../controller/shop')
 const foodController = require('../controller/food')
 const buypageController = require('../controller/buypage')
 const list = require('../controller/list')
+const uploadController = require('../controller/upload')
 
 //通用
 childRouter.post('/login', userController.Login)
@@ -26,6 +27,8 @@ childRouter.post('/getShopInfo', checkToken, shopController.getShopInfo)
 childRouter.post('/getFoodList', checkToken, foodController.getFoodList)
 childRouter.post('/submitFoodInfo', foodController.submitFoodInfo)
 childRouter.post('/deleteFoodList', foodController.deleteFoodList)
+
+childRouter.post('/uploadImg', uploadController.uploadImg)
 
 // 订单管理
 childRouter.post('/submitOrder', checkToken, list.submitOrder)
