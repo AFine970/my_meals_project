@@ -1,9 +1,10 @@
 <template>
   <div>
-    <el-container class="section">
+    <el-container class="main-layout">
       <h2>选你所爱</h2>
-      <el-header>
+      <el-header class="the-header">
         <el-input v-model="username"
+                  class="the-input"
                   placeholder="未登录..."
                   disabled>
           <template slot="prepend">
@@ -17,8 +18,10 @@
       </el-header>
       <search></search>
     </el-container>
-    <span @click="toLogin"
-          class="tips">你是商家？请来这里</span>
+    <div>
+      <span @click="toLogin"
+            class="tips">你是商家？请来这里</span>
+    </div>
   </div>
 </template>
 <script>
@@ -46,15 +49,15 @@ export default {
       // 清除token
       this.$store.dispatch('UserLogout')
       if (!this.$store.state.token) {
-        this.$router.push('login')
         this.$message({
           type: 'info',
           message: '注销成功'
         })
+        this.$router.push('login')
       } else {
         this.$message({
           type: 'info',
-          message: '注销失败'
+          message: '注销失败，请重试'
         })
       }
     },
@@ -75,16 +78,12 @@ export default {
 }
 </script>
 <style scoped>
-.section {
-  width: 70%;
-  margin: 0 auto;
+.the-header {
+  background: #ebf1be;
 }
-.section .el-header {
-  background: #d2e7fa;
-}
-.section .el-header .el-input {
-  margin: 10px;
-  width: 30%;
+.the-input {
+  margin-top: 10px;
+  width: 370px;
   float: right;
 }
 </style>

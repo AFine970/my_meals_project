@@ -4,7 +4,8 @@ const http = require('http')
 const onerror = require('koa-onerror')
 const logger = require('koa-logger')
 const compress = require('koa-compress')
-// const serve = require('koa-static')
+const cors = require('koa-cors')
+const convert = require('koa-convert')
 
 const info = require('../config/info')
 //该中间件用于post请求的数据, ctx.request.body=ctx.body
@@ -22,7 +23,7 @@ const io = require('socket.io')(server)
 
 // 处理错误
 onerror(app)
-
+app.use(convert(cors()))
 app.use(logger())
 app.use(bodyParser())
 // app.use(require('koa-static')(`${__dirname}/public`))
@@ -58,6 +59,12 @@ io.on('connection', socket => {
   })
   socket.on('disconnect', () => {
     io.emit('disconnected')
+  })
+  socket.on('isNewFood', data => {
+    io.emit('isNewFood', data)
+  })
+  socket.on('deleteFood', data => {
+    io.emit('deleteFood', data)
   })
 })
 

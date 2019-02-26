@@ -94,7 +94,7 @@ export default {
 </script>
 <style scoped>
 .search {
-  background: #9499e4;
+  background: #a4aaf7;
 }
 .el-autocomplete {
   margin: 220px 0px 220px 0px;

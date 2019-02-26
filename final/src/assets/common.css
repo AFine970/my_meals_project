@@ -1,11 +1,11 @@
 .tips {
   margin: 10px;
-  color: rgb(133, 133, 133);
+  /* color: rgb(133, 133, 133); */
   display: block;
 }
 
 .tips:hover {
-  color: rgb(5, 124, 204);
+  color: rgb(241, 179, 98);
   cursor: pointer;
 }
 
@@ -17,4 +17,10 @@
   width: 70%;
   height: 550px;
   margin: 0 auto;
+}
+.back {
+  float: left;
+}
+.tab-card {
+  height: 500px;
 }

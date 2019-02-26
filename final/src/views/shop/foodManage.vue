@@ -71,6 +71,7 @@ export default {
                 message: '删除成功'
               })
               rows.splice(index, 1)
+              this.$socket.emit('deleteFood', true)
             } else {
               this.$message({
                 type: 'error',

@@ -1,7 +1,7 @@
 <template>
   <el-container class="buy-page">
     <el-header>
-      <el-button class="back"
+      <el-button class="goback"
                  @click="goBack"
                  icon="el-icon-arrow-left"></el-button>
       <h2>{{companyName}}</h2>
@@ -76,6 +76,9 @@ export default {
     countNum() {
       return this.allSelNum.length
     }
+  },
+  mounted() {
+    this.refresh()
   },
   methods: {
     seeOrder(totalMoney) {
@@ -153,6 +156,18 @@ export default {
     },
     goBack() {
       this.$router.go(-1)
+    },
+    refresh() {
+      this.sockets.subscribe('isNewFood', data => {
+        if (data) {
+          this.loadData()
+        }
+      })
+      this.sockets.subscribe('deleteFood', data => {
+        if (data) {
+          this.loadData()
+        }
+      })
     }
   }
 }
@@ -162,11 +177,8 @@ export default {
   width: 70%;
   margin: 0 auto;
 }
-.back {
+.goback {
   margin-top: 20px;
   float: left;
-}
-.tab-card {
-  height: 500px;
 }
 </style>

@@ -135,6 +135,7 @@ export default {
                   type: 'success',
                   message: '提交成功'
                 })
+                this.$socket.emit('isNewFood', true)
                 this.shopData = {}
                 this.imageUrl = ''
                 this.flag = true

@@ -1,8 +1,9 @@
 <template>
-  <div>
+  <div class="main-layout">
+    <el-button class="back"
+               @click="logout">Esc</el-button>
     <h2>店铺信息管理</h2>
-    <el-tabs class="main-layout"
-             type="border-card">
+    <el-tabs type="border-card">
       <el-tab-pane>
         <span slot="label"><i class="el-icon-document"></i>店铺信息</span>
         <shop-info></shop-info>
@@ -23,7 +24,18 @@ import saleList from './saleList'
 import shopInfo from './shopInfo'
 import foodManage from './foodManage'
 export default {
-  components: { saleList, shopInfo, foodManage }
+  components: { saleList, shopInfo, foodManage },
+  methods: {
+    logout() {
+      this.$store.dispatch('UserLogout')
+      if (!this.$store.state.token) {
+        this.$message({ type: 'info', message: '注销成功' })
+        this.$router.push('login')
+      } else {
+        this.$message({ type: 'info', message: '注销失败，请重试' })
+      }
+    }
+  }
 }
 </script>
 

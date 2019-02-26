@@ -1,5 +1,6 @@
 <template>
   <el-tabs type="boder-card"
+           class="tab-card"
            v-model="activeName">
     <el-tab-pane label="当前订单"
                  name="当前订单">

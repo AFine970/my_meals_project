@@ -125,12 +125,3 @@ export default {
   }
 }
 </script>
-<style scoped>
-.tab-card {
-  height: 500px;
-}
-.back {
-  float: left;
-}
-</style>
-
