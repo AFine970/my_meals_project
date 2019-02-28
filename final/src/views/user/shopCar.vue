@@ -46,7 +46,6 @@ export default {
       totalMeney: ''
     }
   },
-
   computed: {
     sumMoney() {
       return this.orderData.reduce((result, item) => {
