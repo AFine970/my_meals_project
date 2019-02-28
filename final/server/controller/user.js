@@ -1,12 +1,9 @@
 // 获取数据表
 const User = require('../db/db').User
-// 解决MongoDB时区的问题
-const moment = require('moment')
+
 // 用于密码加密
 const sha1 = require('sha1')
 const createToken = require('../middleware/createToken')
-
-moment().format()
 
 // ctx context上下文的缩写
 // async：异步  await是 async await的简写，await 可以用于等待一个 async 函数的返回值
@@ -112,9 +109,28 @@ const GetAllUsers = async ctx => {
     result: res
   }
 }
+const deleteUser = async ctx => {
+  let index = ctx.request.body.index
+  await new Promise((resolve, reject) => {
+    User.findOneAndDelete(index, (err, res) => {
+      if (err) {
+        ctx.body = {
+          success: false
+        }
+        reject(err)
+      } else {
+        ctx.body = {
+          success: true
+        }
+        resolve(res)
+      }
+    })
+  })
+}
 
 module.exports = {
   Login,
   Register,
-  GetAllUsers
+  GetAllUsers,
+  deleteUser
 }

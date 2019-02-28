@@ -1,8 +1,8 @@
 const BuyList = require('../db/db').BuyList
 const SaleList = require('../db/db').SaleList
-const moment = require('moment')
+// const moment = require('moment')
 
-moment().format()
+// moment().format()
 // 用户提交订单
 const submitOrder = async ctx => {
   // console.log(ctx.request.body)

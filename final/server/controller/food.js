@@ -1,7 +1,7 @@
 const FoodList = require('../db/db').FoodList
-const moment = require('moment')
+// const moment = require('moment')
 
-moment().format()
+// moment().format()
 
 // 获得当前商家下的所有菜单
 const getFoodList = async ctx => {

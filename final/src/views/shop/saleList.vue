@@ -35,7 +35,8 @@
       </el-table>
     </el-tab-pane>
 
-    <el-tab-pane label="历史订单">
+    <el-tab-pane label="历史订单"
+                 name="历史订单">
       <el-table :data="tableData2"
                 max-height="400"
                 stripe>
@@ -80,6 +81,27 @@
         </el-table-column>
       </el-table>
     </el-tab-pane>
+
+    <el-tab-pane label="收益汇总"
+                 name="收益汇总">
+      <h3>查看你的月收益</h3>
+      <el-date-picker v-model="selTime"
+                      :editable="false"
+                      type="month"
+                      placeholder="选择年月份"
+                      format="yyyy 年 MM 月"
+                      value-format="yyyy-MM"
+                      @change="handleDate">
+      </el-date-picker>
+      <el-button @click="findOrderByDate"
+                 type="primary">查找</el-button>
+      <div class="income">
+        <p>本月当前总收入</p>
+        <i>{{totalInCome}}</i>
+        <p>本月当前总订单数</p>
+        <i>{{totalOrder}}</i>
+      </div>
+    </el-tab-pane>
   </el-tabs>
 </template>
 <script>
@@ -96,7 +118,13 @@ export default {
       activeName: '当前订单',
       tableData1: [],
       tableData2: [],
-      flag: false
+      flag: false,
+
+      eachMoeny: [],
+
+      selTime: '',
+      totalInCome: '',
+      totalOrder: ''
     }
   },
   methods: {
@@ -143,8 +171,39 @@ export default {
           this.$message({ type: 'success', message: '您有新订单' })
         }
       })
+    },
+    handleDate() {
+      if (!this.selTime) {
+        return
+      }
+    },
+    findOrderByDate() {
+      this.eachMoeny = []
+      for (const item of this.tableData2) {
+        if (this.selTime === item.orderDate.slice(0, 7)) {
+          this.eachMoeny.push(item.totalMoney)
+        }
+      }
+
+      this.totalOrder = this.eachMoeny.length
+      this.totalInCome = this.eachMoeny.reduce((a, b) => {
+        return Number(a) + Number(b)
+      }, 0)
+      // this.eachMoeny = ''
+      // console.log(this.eachMoeny)
     }
   }
 }
 </script>
+<style scoped>
+.income {
+  margin: 50px;
+}
+.income i {
+  margin: 30px;
+  font-weight: bold;
+  color: crimson;
+}
+</style>
+
 

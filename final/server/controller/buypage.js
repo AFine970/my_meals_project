@@ -1,7 +1,7 @@
 const FoodList = require('../db/db').FoodList
-const moment = require('moment')
+// const moment = require('moment')
 
-moment().format()
+// moment().format()
 
 // 获得名下所有的菜单
 // find({key:value})

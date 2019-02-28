@@ -84,7 +84,10 @@ export default {
   },
 
   // 管理员
-  getAllUser() {
-    return instance.get('/api/getAllUser')
+  getAllUsers() {
+    return instance.get('/api/getAllUsers')
+  },
+  deleteUser(data) {
+    return instance.post('/api/deleteUser', data)
   }
 }

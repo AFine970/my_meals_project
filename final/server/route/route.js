@@ -42,6 +42,7 @@ childRouter.post('/receiveOrder_User', list.receiveOrder_User)
 childRouter.post('/receiveOrder_Shop', list.receiveOrder_Shop)
 
 //管理员
-childRouter.get('/getUser', checkToken, userController.GetAllUsers)
+childRouter.get('/getAllUsers', userController.GetAllUsers)
+childRouter.post('/deleteUser', userController.deleteUser)
 
 module.exports = childRouter

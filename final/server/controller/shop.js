@@ -1,7 +1,7 @@
 const Shop = require('../db/db').Shop
-const moment = require('moment')
+// const moment = require('moment')
 
-moment().format()
+// moment().format()
 
 // 获取当前店铺信息
 const getShopInfo = async ctx => {
