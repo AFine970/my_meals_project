@@ -1,28 +1,24 @@
 <template>
-  <div>
-    <el-container class="main-layout">
-      <h2>选你所爱</h2>
-      <el-header class="the-header">
-        <el-input v-model="username"
-                  class="the-input"
-                  placeholder="未登录..."
-                  disabled>
-          <template slot="prepend">
-            <i>用户名</i>
-          </template>
-          <el-button slot="append"
-                     @click="tobuyList">我的订单</el-button>
-          <el-button slot="append"
-                     @click="logout">注销</el-button>
-        </el-input>
-      </el-header>
-      <search></search>
-    </el-container>
-    <div>
-      <span @click="toLogin"
-            class="tips">你是商家？请来这里</span>
-    </div>
-  </div>
+  <el-container class="main-layout">
+    <h2>选你所爱</h2>
+    <el-header class="the-header">
+      <el-input v-model="username"
+                class="the-input"
+                placeholder="未登录..."
+                disabled>
+        <template slot="prepend">
+          <i>用户名</i>
+        </template>
+        <el-button slot="append"
+                   @click="tobuyList">我的订单</el-button>
+        <el-button slot="append"
+                   @click="logout">注销</el-button>
+      </el-input>
+    </el-header>
+    <search></search>
+    <span @click="toLogin"
+          class="tips">你是商家？请来这里</span>
+  </el-container>
 </template>
 <script>
 import search from '../views/user/search'
@@ -79,7 +75,7 @@ export default {
 </script>
 <style scoped>
 .the-header {
-  background: #ebf1be;
+  background-color: #6fb7ff;
 }
 .the-input {
   margin-top: 10px;

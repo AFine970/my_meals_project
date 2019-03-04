@@ -1,7 +1,7 @@
 <template>
   <div class="main-layout">
     <el-button class="back"
-               @click="logout">注销</el-button>
+               @click="logout">Esc</el-button>
     <h2>管理员</h2>
     <el-tabs v-model="activeName"
              class="tab-card"

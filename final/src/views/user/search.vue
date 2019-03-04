@@ -5,8 +5,7 @@
                      placeholder="搜索店铺"
                      @select="handleSelect"
                      clearable>
-      <i class="el-icon-search el-input__icon"
-         slot="prefix"></i>
+      <i slot="prefix"></i>
     </el-autocomplete>
     <el-badge value="hot">
       <el-button type="primary"
@@ -94,7 +93,8 @@ export default {
 </script>
 <style scoped>
 .search {
-  background: #a4aaf7;
+  background: url('../../assets/search-bg.jpg') no-repeat;
+  background-size: 100% 100%;
 }
 .el-autocomplete {
   margin: 220px 0px 220px 0px;

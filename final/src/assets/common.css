@@ -1,11 +1,10 @@
 .tips {
   margin: 10px;
-  /* color: rgb(133, 133, 133); */
   display: block;
 }
 
 .tips:hover {
-  color: rgb(241, 179, 98);
+  color: #f56c6c;
   cursor: pointer;
 }
 
@@ -14,7 +13,7 @@
 }
 
 .main-layout {
-  width: 70%;
+  width: 60%;
   height: 550px;
   margin: 0 auto;
 }

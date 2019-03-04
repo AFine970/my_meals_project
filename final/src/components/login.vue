@@ -47,7 +47,7 @@ export default {
         return callback(new Error('账号不能为空'))
       }
       setTimeout(() => {
-        if (!/^1[34578]\d{9}$/.test(value)) {
+        if (!/^1[345678]\d{9}$/.test(value)) {
           callback(new Error('请输入正确的电话号码'))
         } else {
           callback()
