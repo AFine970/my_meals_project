@@ -23,6 +23,8 @@
                   v-model="formData.radio">用户</el-radio>
         <el-radio label="shop"
                   v-model="formData.radio">商家</el-radio>
+        <el-radio label="admin"
+                  v-model="formData.radio">管理员</el-radio>
       </el-form-item>
       <el-form-item>
         <el-button class="btn-full"
@@ -115,8 +117,10 @@ export default {
                   this.$router.push({
                     path: redirectUrl
                   })
-                } else {
+                } else if (radio === 'shop') {
                   this.$router.push('/myshop')
+                } else {
+                  this.$router.push('/manage')
                 }
               } else {
                 this.$message({

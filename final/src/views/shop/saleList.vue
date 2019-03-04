@@ -122,9 +122,9 @@ export default {
 
       eachMoeny: [],
 
-      selTime: '',
-      totalInCome: '',
-      totalOrder: ''
+      selTime: '', //选择的时间
+      totalInCome: 0,
+      totalOrder: 0
     }
   },
   methods: {

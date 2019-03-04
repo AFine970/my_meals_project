@@ -89,5 +89,8 @@ export default {
   },
   deleteUser(data) {
     return instance.post('/api/deleteUser', data)
+  },
+  getAllOrderNum() {
+    return instance.get('/api/getAllOrderNum')
   }
 }
