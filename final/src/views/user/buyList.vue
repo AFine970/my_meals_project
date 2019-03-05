@@ -117,8 +117,8 @@ export default {
       this.sockets.subscribe('isReceived', data => {
         // debugger
         if (data) {
-          this.loadData()
           this.$message({ type: 'success', message: '商家已接单' })
+          this.loadData()
         }
       })
     }

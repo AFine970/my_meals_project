@@ -1,5 +1,6 @@
 <template>
   <el-container class="buy-page">
+    <my-head></my-head>
     <el-header>
       <el-button class="goback"
                  @click="goBack"
@@ -29,7 +30,7 @@
                 :max="10"
                 class="item">
         <el-button @click="seeOrder"
-                   type="info"><i class="el-icon-goods"></i></el-button>
+                   type="info"><i class="el-icon-goods"></i>我的购物车</el-button>
       </el-badge>
 
       <el-button v-if="isLook"
@@ -44,9 +45,10 @@
 <script>
 import foodCard from './foodCard'
 import shopCar from './shopCar'
+import myHead from '../../components/myhead'
 import api from '../../Api.js'
 export default {
-  components: { foodCard, shopCar },
+  components: { foodCard, shopCar, myHead },
   data() {
     return {
       buyerId: '',
