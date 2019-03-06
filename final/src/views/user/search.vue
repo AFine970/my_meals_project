@@ -93,7 +93,7 @@ export default {
 </script>
 <style scoped>
 .search {
-  background: url('../../assets/search-bg.jpg') no-repeat;
+  background: url('../../assets/bgg.jpg') no-repeat;
   background-size: 100% 100%;
 }
 .el-autocomplete {
