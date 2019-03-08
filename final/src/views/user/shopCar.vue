@@ -1,9 +1,10 @@
 <template>
   <div class="main-layout">
     <el-dialog title="我的购物车"
+               class="shopCar"
                :visible.sync="isShowOrder"
                @close="handleClose">
-      <el-table :data="orderData"
+      <el-table :data="Data"
                 max-height="400"
                 stripe>
         <el-table-column prop="foodName"
@@ -21,6 +22,10 @@
           </template>
         </el-table-column>
       </el-table>
+      <el-button size="mini"
+                 class="clear-btn"
+                 type="info"
+                 @click="clearData">清空购物车</el-button>
       <div class="money-style">
         <span>总金额</span>
         <i>￥{{sumMoney}}</i>
@@ -43,9 +48,10 @@ export default {
   data() {
     return {
       isShowOrder: true,
-      totalMeney: ''
+      Data: this.orderData
     }
   },
+
   computed: {
     sumMoney() {
       return this.orderData.reduce((result, item) => {
@@ -53,22 +59,32 @@ export default {
       }, 0)
     }
   },
+
   methods: {
     handleClose() {
-      this.totalMeney = this.sumMoney
-      this.$emit('close', this.totalMeney)
+      let totalMeney = this.sumMoney
+      this.$emit('close', totalMeney)
+    },
+    // 清空购物车
+    clearData() {
+      this.Data = []
+      let info = { orderData: [], allSelNum: [] }
+      this.$emit('clear', info)
     }
   }
 }
 </script>
 
 <style scoped>
+.clear-btn {
+  margin: 15px;
+}
 .money-style {
   margin: 10px;
 }
 .money-style i {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 25px;
   color: crimson;
 }
 .money-style span {

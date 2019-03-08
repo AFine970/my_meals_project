@@ -30,16 +30,17 @@
                 :max="10"
                 class="item">
         <el-button @click="seeOrder"
-                   type="info"><i class="el-icon-goods"></i>我的购物车</el-button>
+                   type="primary"><i class="el-icon-goods"></i>我的购物车</el-button>
       </el-badge>
 
       <el-button v-if="isLook"
                  @click="submitOrder"
-                 type="primary">立即下单</el-button>
+                 type="success">立即下单</el-button>
     </div>
     <shop-car v-if="isShow"
               :orderData="orderData"
-              @close="seeOrder"></shop-car>
+              @close="seeOrder"
+              @clear="clearData"></shop-car>
   </el-container>
 </template>
 <script>
@@ -145,7 +146,7 @@ export default {
     },
 
     addtoCar(item) {
-      console.log('666', item)
+      // console.log('666', item)
       this.$message({ type: 'success', message: '已添加到购物车' })
       this.allSelNum.push(item)
       let busArr = this.orderData
@@ -156,9 +157,11 @@ export default {
         this.orderData.push(item)
       }
     },
+
     goBack() {
       this.$router.go(-1)
     },
+
     refresh() {
       this.sockets.subscribe('isNewFood', data => {
         if (data) {
@@ -170,6 +173,11 @@ export default {
           this.loadData()
         }
       })
+    },
+
+    clearData(info) {
+      this.orderData = info.orderData
+      this.allSelNum = info.allSelNum
     }
   }
 }

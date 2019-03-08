@@ -95,9 +95,10 @@ export default {
 .search {
   background: url('../../assets/bgg.jpg') no-repeat;
   background-size: 100% 100%;
+  height: 550px;
 }
 .el-autocomplete {
-  margin: 220px 0px 220px 0px;
+  margin: 250px 0px 250px 0px;
   float: center;
 }
 </style>

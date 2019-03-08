@@ -171,24 +171,21 @@ const receiveOrder_User = async ctx => {
     )
   })
 }
-const getAllOrderNum = async ctx => {
-  await new Promise((resolve, reject) => {
-    BuyList.countDocuments({}, (err, res) => {
-      if (err) {
-        ctx.body = {
-          success: false
-        }
-        reject(err)
-      } else {
-        ctx.body = {
-          success: true,
-          result: res
-        }
-        resolve(res)
-      }
-    })
-  })
-}
+
+// const getEachMonthOrderNum = async ctx => {
+//   await new Promise((resolve, reject) => {
+//     BuyList.find({}, (err, res) => {
+//       if (err) {
+//         reject(err)
+//       } else {
+//         resolve(res)
+//         res.forEach(item=>{
+//           rkey:item.orderDate.getMonth()
+//         })
+//       }
+//     })
+//   })
+// }
 
 module.exports = {
   submitOrder,
@@ -200,7 +197,7 @@ module.exports = {
   getShopHistoryOrder,
 
   receiveOrder_Shop,
-  receiveOrder_User,
+  receiveOrder_User
 
-  getAllOrderNum
+  // getEachMonthOrderNum
 }
