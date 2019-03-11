@@ -12,6 +12,13 @@
         </el-table-column>
         <el-table-column prop="selNum"
                          label="数量">
+          <template slot-scope="scope">
+            <el-input-number v-model="scope.row.selNum"
+                             @change="handleChange(scope.row)"
+                             :min="0"
+                             controls-position="right"
+                             size="small"></el-input-number>
+          </template>
         </el-table-column>
         <el-table-column prop="foodPrice"
                          label="单价">
@@ -54,7 +61,7 @@ export default {
 
   computed: {
     sumMoney() {
-      return this.orderData.reduce((result, item) => {
+      return this.Data.reduce((result, item) => {
         return result + item.selNum * item.foodPrice
       }, 0)
     }
@@ -68,8 +75,22 @@ export default {
     // 清空购物车
     clearData() {
       this.Data = []
-      let info = { orderData: [], allSelNum: [] }
+      let info = { orderData: [] }
       this.$emit('clear', info)
+    },
+    //获得input-select的值
+    handleChange(val) {
+      // 为0时，删除掉该项
+      if (val.selNum === 0) {
+        for (const item of this.Data) {
+          if (item === val) {
+            let index = this.Data.indexOf(item)
+            this.Data.splice(index, 1)
+          }
+        }
+      }
+      let info = { orderData: this.Data }
+      this.$emit('change', info)
     }
   }
 }

@@ -89,8 +89,8 @@ export default {
   },
   deleteUser(data) {
     return instance.post('/api/deleteUser', data)
-  },
-  getEachMonthOrderNum() {
-    return instance.get('/api/getEachMonthOrderNum')
   }
+  // getEachMonthOrderNum() {
+  //   return instance.get('/api/getEachMonthOrderNum')
+  // }
 }

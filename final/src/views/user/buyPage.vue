@@ -40,7 +40,8 @@
     <shop-car v-if="isShow"
               :orderData="orderData"
               @close="seeOrder"
-              @clear="clearData"></shop-car>
+              @clear="clearData"
+              @change="getChange"></shop-car>
   </el-container>
 </template>
 <script>
@@ -65,7 +66,7 @@ export default {
       activeName: '人气热销',
 
       foodList: [],
-      allSelNum: [],
+
       orderData: []
     }
   },
@@ -77,7 +78,9 @@ export default {
       return this.foodList.filter(item => item.foodRegion === this.activeName)
     },
     countNum() {
-      return this.allSelNum.length
+      return this.orderData.reduce((result, item) => {
+        return result + Number(item.selNum)
+      }, 0)
     }
   },
   mounted() {
@@ -107,7 +110,7 @@ export default {
             companyId: this.companyId,
             totalMoney: this.totalMoney
           }
-          // console.log('>>>>>>', bus)
+          console.log('>>>>>>', bus)
           if (this.orderData.length === 0) {
             this.$message({ type: 'error', message: '不能提交空订单' })
             return false
@@ -119,7 +122,10 @@ export default {
               this.$notify({ type: 'success', message: '下单成功' })
             } else {
               this.$socket.emit('isNewOrder', false)
-              this.$notify({ type: 'error', message: '出现错误' })
+              this.$notify({
+                type: 'error',
+                message: `出现错误${response.data.error.message}`
+              })
               return false
             }
           })
@@ -147,21 +153,18 @@ export default {
 
     addtoCar(item) {
       // console.log('666', item)
-      this.$message({ type: 'success', message: '已添加到购物车' })
-      this.allSelNum.push(item)
       let busArr = this.orderData
-      // console.log(this.allSelNum.length)
       if (busArr.some(each => each === item)) {
         item.selNum++
       } else {
         this.orderData.push(item)
       }
     },
-
+    // 返回上一级
     goBack() {
       this.$router.go(-1)
     },
-
+    // 根据sockets的值进行即时更新
     refresh() {
       this.sockets.subscribe('isNewFood', data => {
         if (data) {
@@ -174,10 +177,15 @@ export default {
         }
       })
     },
-
+    // 清空购物车
     clearData(info) {
       this.orderData = info.orderData
-      this.allSelNum = info.allSelNum
+      this.loadData()
+    },
+
+    getChange(info) {
+      this.orderData = info.orderData
+      this.loadData()
     }
   }
 }

@@ -179,9 +179,8 @@ export default {
   width: 50%;
   margin: 0 auto;
 }
-
 .avatar-uploader-icon {
-  font-size: 28px;
+  font-size: 40px;
   color: #8c939d;
   width: 178px;
   height: 178px;

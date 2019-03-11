@@ -6,7 +6,7 @@
               @close="add" />
     <h3>已添加的商品信息</h3>
     <el-table :data="tableData"
-              max-height="350"
+              max-height="400"
               stripe>
       <el-table-column prop="foodName"
                        label="商品名称">
