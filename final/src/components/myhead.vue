@@ -1,6 +1,6 @@
 <template>
-  <div class="the-header">
-    <i class="the-title">餐饮管理系统</i>
+  <div class="header">
+    <i class="the-title"><span></span>餐饮管理系统</i>
     <el-input v-model="username"
               class="the-input"
               placeholder="未登录..."
@@ -9,10 +9,15 @@
         <i>{{radio}}</i>
       </template>
       <el-button slot="append"
-                 @click="toOrderList">我的订单</el-button>
+                 @click="toOrderList">个人中心</el-button>
       <el-button slot="append"
                  @click="logOut">注销</el-button>
     </el-input>
+    <div class="the-txt">
+      <span @click="tologin">登录</span>
+      <span>|</span>
+      <span @click="toRegister">注册</span>
+    </div>
   </div>
 </template>
 <script>
@@ -20,7 +25,7 @@ export default {
   data() {
     return {
       username: '',
-      radio: null
+      radio: ''
     }
   },
   created() {
@@ -48,32 +53,52 @@ export default {
       }
     },
     toOrderList() {
-      // console.log(this.radio)
       if (this.radio === 'user') {
         this.$router.push('buylist')
       } else {
         this.$message('请登录后再查看')
         this.$router.push('login')
       }
+    },
+    tologin() {
+      this.$router.push('login')
+    },
+    toRegister() {
+      this.$router.push('register')
     }
   }
 }
 </script>
-<style scoped>
-.the-title {
-  font-size: 25px;
-  margin: 17px;
-  float: left;
-  color: #ffffff;
-}
-.the-header {
-  background-color: #6fb7ff;
+<style lang="less" scoped>
+.header {
+  background-color: #001871;
+  padding: 5px;
   width: 100%;
-  border-radius: 10px;
-}
-.the-input {
-  margin: 13px;
-  width: 370px;
-  float: right;
+  overflow: hidden;
+  .the-title {
+    font-size: 25px;
+    margin: 17px 0px 17px 50px;
+    float: left;
+    color: #f9faf6;
+  }
+  .the-txt {
+    color: #f9faf6;
+    float: right;
+    margin: 22px;
+    span {
+      margin: 2px;
+      &:hover {
+        cursor: pointer;
+        color: #f2317f;
+      }
+    }
+  }
+  .the-input {
+    margin: 13px 25px 13px 13px;
+    width: 350px;
+    float: right;
+  }
 }
 </style>
+
+

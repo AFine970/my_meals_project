@@ -1,58 +1,59 @@
 <template>
-  <div class="registerPage">
-    <h2>Register</h2>
-    <el-form :model="formData"
-             ref="formData"
-             status-icon
-             :rules="rules">
-      <el-form-item prop="username">
-        <el-input placeholder="手机号"
-                  maxlength="11"
-                  type="text"
-                  clearable
-                  v-model.trim="formData.username"></el-input>
-      </el-form-item>
-      <el-form-item prop="password">
-        <el-input placeholder="密码"
-                  type="password"
-                  clearable
-                  v-model.trim="formData.password"></el-input>
-      </el-form-item>
-      <el-form-item prop="repassword">
-        <el-input placeholder="确认密码"
-                  type="password"
-                  clearable
-                  v-model.trim="formData.repassword"></el-input>
-      </el-form-item>
-      <el-form-item prop="phoneKey">
-        <el-input placeholder="验证码"
-                  type="text"
-                  clearable
-                  v-model.trim="formData.phoneKey"
-                  maxlength="4"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button class="btn-full"
-                   plain
-                   type="info"
-                   :disabled="disabled"
-                   @click="getphoneKey">{{btn_msg}}</el-button>
-      </el-form-item>
-      <el-form-item prop="radio">
-        <el-radio label="user"
-                  v-model="formData.radio">用户</el-radio>
-        <el-radio label="shop"
-                  v-model="formData.radio">商家</el-radio>
-      </el-form-item>
-      <el-form-item>
-        <el-button class="btn-full"
-                   round
-                   @click="register('formData')"
-                   type="success">注册</el-button>
-      </el-form-item>
-    </el-form>
-    <span @click="toLogin"
-          class="tips">已有账号？马上登录</span>
+  <div class="register-img">
+    <el-card class="loginCard">
+      <h2>Register</h2>
+      <el-form :model="formData"
+               ref="formData"
+               status-icon
+               :rules="rules">
+        <el-form-item prop="username">
+          <el-input placeholder="手机号"
+                    maxlength="11"
+                    type="text"
+                    clearable
+                    v-model.trim="formData.username"></el-input>
+        </el-form-item>
+        <el-form-item prop="password">
+          <el-input placeholder="密码"
+                    type="password"
+                    clearable
+                    v-model.trim="formData.password"></el-input>
+        </el-form-item>
+        <el-form-item prop="repassword">
+          <el-input placeholder="确认密码"
+                    type="password"
+                    clearable
+                    v-model.trim="formData.repassword"></el-input>
+        </el-form-item>
+        <el-form-item prop="phoneKey">
+          <el-input placeholder="验证码"
+                    type="text"
+                    clearable
+                    v-model.trim="formData.phoneKey"
+                    maxlength="4"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button class="btn-full"
+                     plain
+                     type="info"
+                     :disabled="disabled"
+                     @click="getphoneKey">{{btn_msg}}</el-button>
+        </el-form-item>
+        <el-form-item prop="radio">
+          <el-radio label="user"
+                    v-model="formData.radio">用户</el-radio>
+          <el-radio label="shop"
+                    v-model="formData.radio">商家</el-radio>
+        </el-form-item>
+        <el-form-item>
+          <el-button class="btn-full"
+                     type="primary"
+                     @click="register('formData')">注册</el-button>
+        </el-form-item>
+      </el-form>
+      <span @click="toLogin"
+            class="tips">已有账号？马上登录</span>
+    </el-card>
   </div>
 </template>
 <script>
@@ -238,9 +239,12 @@ export default {
   }
 }
 </script>
-<style scoped>
-.registerPage {
-  margin: 0 auto;
-  width: 300px;
+
+<style lang="less" scoped>
+.register-img {
+  height: 100%;
+  background: url('../assets/bg-register.jpg') no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 </style>

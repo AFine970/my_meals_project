@@ -1,17 +1,19 @@
 <template>
   <div class="search">
-    <el-autocomplete v-model="inputVal"
-                     :fetch-suggestions="querySearch"
-                     placeholder="搜索店铺"
-                     @select="handleSelect"
-                     clearable>
-      <i slot="prefix"></i>
-    </el-autocomplete>
-    <el-badge value="hot">
-      <el-button type="primary"
-                 @click="toBuy"
-                 v-loading.fullscreen.lock="loading">Go</el-button>
-    </el-badge>
+    <div class="el-input">
+      <el-autocomplete v-model="inputVal"
+                       :fetch-suggestions="querySearch"
+                       placeholder="搜索店铺"
+                       @select="handleSelect"
+                       clearable>
+        <i slot="prefix"></i>
+      </el-autocomplete>
+      <el-badge value="hot">
+        <el-button type="primary"
+                   @click="toBuy"
+                   v-loading.fullscreen.lock="loading">Go</el-button>
+      </el-badge>
+    </div>
   </div>
 </template>
 <script>
@@ -62,7 +64,6 @@ export default {
     },
 
     querySearch(queryString, callback) {
-      // window.console.log(this.restaurants)
       var restaurants = this.restaurants
       var res = queryString
         ? restaurants.filter(this.createFilter(queryString))
@@ -73,7 +74,6 @@ export default {
     loadData() {
       api.getAllcompanyName().then(response => {
         if (response.data.success === true) {
-          // window.console.log(response.data.result)
           let result = response.data.result
           for (const item of result) {
             item.value = item.companyName
@@ -91,15 +91,18 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style lang="less" scoped>
 .search {
-  background: url('../../assets/bgg.jpg') no-repeat;
-  background-size: 100% 100%;
-  height: 550px;
-}
-.el-autocomplete {
-  margin: 250px 0px 250px 0px;
-  float: center;
+  height: 100%;
+  background: url('../../assets/bg-home.jpg') no-repeat;
+  background-size: cover;
+  background-position: center;
+  .el-input {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 </style>
 

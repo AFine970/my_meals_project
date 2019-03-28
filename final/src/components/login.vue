@@ -1,40 +1,41 @@
 <template>
-  <div class="loginPage">
-    <h2>{{formData.radio}}Login</h2>
-    <el-form :model="formData"
-             status-icon
-             :rules="rules"
-             ref="formData">
-      <el-form-item prop="username">
-        <el-input placeholder="手机号"
-                  maxlength="11"
-                  type="text"
-                  clearable
-                  v-model.trim="formData.username"></el-input>
-      </el-form-item>
-      <el-form-item prop="password">
-        <el-input placeholder="密码"
-                  type="password"
-                  clearable
-                  v-model.trim="formData.password"></el-input>
-      </el-form-item>
-      <el-form-item prop="radio">
-        <el-radio label="user"
-                  v-model="formData.radio">用户</el-radio>
-        <el-radio label="shop"
-                  v-model="formData.radio">商家</el-radio>
-        <el-radio label="admin"
-                  v-model="formData.radio">管理员</el-radio>
-      </el-form-item>
-      <el-form-item>
-        <el-button class="btn-full"
-                   round
-                   type="success"
-                   @click="login('formData')">登录</el-button>
-      </el-form-item>
-    </el-form>
-    <span @click="toRegister"
-          class="tips">没有账号？立即注册</span>
+  <div class="login-img">
+    <el-card class="loginCard">
+      <h2>{{formData.radio}}Login</h2>
+      <el-form :model="formData"
+               status-icon
+               :rules="rules"
+               ref="formData">
+        <el-form-item prop="username">
+          <el-input placeholder="手机号"
+                    maxlength="11"
+                    type="text"
+                    clearable
+                    v-model.trim="formData.username"></el-input>
+        </el-form-item>
+        <el-form-item prop="password">
+          <el-input placeholder="密码"
+                    type="password"
+                    clearable
+                    v-model.trim="formData.password"></el-input>
+        </el-form-item>
+        <el-form-item prop="radio">
+          <el-radio label="user"
+                    v-model="formData.radio">用户</el-radio>
+          <el-radio label="shop"
+                    v-model="formData.radio">商家</el-radio>
+          <el-radio label="admin"
+                    v-model="formData.radio">管理员</el-radio>
+        </el-form-item>
+        <el-form-item>
+          <el-button class="btn-full"
+                     type="primary"
+                     @click="login('formData')">登录</el-button>
+        </el-form-item>
+      </el-form>
+      <span @click="toRegister"
+            class="tips">没有账号？立即注册</span>
+    </el-card>
   </div>
 </template>
 
@@ -150,9 +151,11 @@ export default {
 }
 </script>
 
-<style scoped>
-.loginPage {
-  margin: 0 auto;
-  width: 300px;
+<style lang="less" scoped>
+.login-img {
+  height: 100%;
+  background: url('../assets/bg-login.jpg') no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 </style>

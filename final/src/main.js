@@ -8,7 +8,7 @@ import store from './store/index.js'
 import VueSocketIO from 'vue-socket.io'
 
 import 'element-ui/lib/theme-chalk/index.css'
-import './assets/common.css'
+import '!style-loader!css-loader!less-loader!./assets/reset.less'
 
 // 关闭生产模式下给出的提示
 Vue.config.productionTip = false

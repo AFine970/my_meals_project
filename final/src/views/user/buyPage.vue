@@ -1,48 +1,50 @@
 <template>
-  <el-container class="buy-page">
+  <div>
     <my-head></my-head>
-    <el-header>
-      <el-button class="goback"
-                 @click="goBack"
-                 icon="el-icon-arrow-left"></el-button>
-      <h2>{{companyName}}</h2>
-    </el-header>
-    <el-main>
-      <el-tabs type="border-card"
-               class="tab-card"
-               tab-position="left"
-               v-model="activeName">
-        <el-tab-pane v-for="name in nameList"
-                     :label="name"
-                     :name="name"
-                     :key="name">
-          <template v-if="name === activeName">
-            <food-card v-for="item in showList"
-                       :item="item"
-                       @addtoCar="addtoCar"
-                       :key="item._id" />
-          </template>
-        </el-tab-pane>
-      </el-tabs>
-    </el-main>
-    <div>
-      <el-badge :value="countNum"
-                :max="10"
-                class="item">
-        <el-button @click="seeOrder"
-                   type="primary"><i class="el-icon-goods"></i>我的购物车</el-button>
-      </el-badge>
+    <el-container class="main-layout">
+      <el-header>
+        <el-button class="goback"
+                   @click="goBack"
+                   icon="el-icon-arrow-left"></el-button>
+        <h2>{{companyName}}</h2>
+      </el-header>
+      <el-main>
+        <el-tabs type="border-card"
+                 class="tab-card"
+                 tab-position="left"
+                 v-model="activeName">
+          <el-tab-pane v-for="name in nameList"
+                       :label="name"
+                       :name="name"
+                       :key="name">
+            <template v-if="name === activeName">
+              <food-card v-for="item in showList"
+                         :item="item"
+                         @addtoCar="addtoCar"
+                         :key="item._id" />
+            </template>
+          </el-tab-pane>
+        </el-tabs>
+      </el-main>
+      <div>
+        <el-badge :value="countNum"
+                  :max="10"
+                  class="item">
+          <el-button @click="seeOrder"
+                     type="primary"><i class="el-icon-goods"></i>我的购物车</el-button>
+        </el-badge>
 
-      <el-button v-if="isLook"
-                 @click="submitOrder"
-                 type="success">立即下单</el-button>
-    </div>
-    <shop-car v-if="isShow"
-              :orderData="orderData"
-              @close="seeOrder"
-              @clear="clearData"
-              @change="getChange"></shop-car>
-  </el-container>
+        <el-button v-if="isLook"
+                   @click="submitOrder"
+                   type="success">立即下单</el-button>
+      </div>
+      <shop-car v-if="isShow"
+                :orderData="orderData"
+                @close="seeOrder"
+                @clear="clearData"
+                @change="getChange"></shop-car>
+    </el-container>
+  </div>
 </template>
 <script>
 import foodCard from './foodCard'
@@ -191,10 +193,6 @@ export default {
 }
 </script>
 <style scoped>
-.buy-page {
-  width: 70%;
-  margin: 0 auto;
-}
 .goback {
   margin-top: 20px;
   float: left;

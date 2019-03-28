@@ -1,20 +1,21 @@
 <template>
-  <div class="main-layout">
-    <h2>选你所爱</h2>
+  <div class="home">
+    <myhead></myhead>
     <search></search>
-    <span @click="toLogin"
-          class="tips">你是商家？请来这里</span>
+    <shop-plate></shop-plate>
   </div>
 </template>
 <script>
 import search from '../views/user/search'
+import myhead from '../components/myhead'
+import shopPlate from '../components/shopPlate'
 export default {
-  components: { search },
-  methods: {
-    toLogin() {
-      this.$store.dispatch('UserLogout')
-      this.$router.push('login')
-    }
-  }
+  components: { search, myhead, shopPlate }
 }
 </script>
+<style lang="less" scoped>
+.home {
+  height: 100%;
+}
+</style>
+
