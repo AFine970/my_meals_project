@@ -2,7 +2,7 @@
 
 > A Vue.js project
 > 毕业设计
-> 作者：AFine970
+> 作者：韦存航（AFine970）
 
 ## Build Setup
 
