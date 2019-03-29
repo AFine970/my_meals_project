@@ -45,7 +45,7 @@ export default {
         setTimeout(() => {
           this.loading = false
           this.$router.push('/buy')
-        }, 750)
+        }, 500)
         let data = this.selectItem
         this.$store.dispatch('Company', data)
       } else {

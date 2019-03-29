@@ -12,7 +12,7 @@
         <el-tab-pane label="当前订单"
                      name="当前订单">
           <el-table :data="tableData1"
-                    max-height="550"
+                    max-height="450"
                     stripe>
             <el-table-column prop="orderDate"
                              label="订单日期">
@@ -36,7 +36,7 @@
         <el-tab-pane label="历史订单"
                      name="历史订单">
           <el-table :data="tableData2"
-                    max-height="550"
+                    max-height="450"
                     stripe>
             <el-table-column type="expand">
               <template slot-scope="scope">
@@ -122,8 +122,8 @@ export default {
       this.sockets.subscribe('isReceived', data => {
         // debugger
         if (data) {
-          this.$message({ type: 'success', message: '商家已接单' })
           this.loadData()
+          this.$message({ type: 'success', message: '商家已接单' })
         }
       })
     }

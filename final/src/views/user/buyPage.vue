@@ -112,7 +112,7 @@ export default {
             companyId: this.companyId,
             totalMoney: this.totalMoney
           }
-          console.log('>>>>>>', bus)
+          // console.log('>>>>>>', bus)
           if (this.orderData.length === 0) {
             this.$message({ type: 'error', message: '不能提交空订单' })
             return false

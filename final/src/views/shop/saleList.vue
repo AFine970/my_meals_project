@@ -168,7 +168,10 @@ export default {
       this.sockets.subscribe('isNewOrder', data => {
         if (data) {
           this.loadData()
-          this.$message({ type: 'success', message: '您有新订单' })
+          this.$notify({
+            type: 'success',
+            message: '您有新订单了'
+          })
         }
       })
     },

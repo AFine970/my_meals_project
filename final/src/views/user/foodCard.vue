@@ -1,6 +1,7 @@
 <template>
   <div class="menu-card">
-    <el-card :body-style="{ padding: '0px' }">
+    <el-card :body-style="{ padding: '0px' }"
+             shadow="hover">
       <img :src="item.imageUrl"
            class="menu-card-img">
       <div class="menu-card-des">

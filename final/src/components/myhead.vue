@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <i class="the-title"><span></span>餐饮管理系统</i>
+    <i class="the-title">餐饮管理系统</i>
     <el-input v-model="username"
               class="the-input"
               placeholder="未登录..."

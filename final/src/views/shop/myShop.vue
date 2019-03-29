@@ -2,8 +2,6 @@
   <div>
     <my-head></my-head>
     <div class="main-layout">
-      <el-button class="back"
-                 @click="logout">Esc</el-button>
       <h2>店铺信息管理</h2>
       <el-tabs type="border-card">
         <el-tab-pane>
@@ -28,18 +26,7 @@ import shopInfo from './shopInfo'
 import foodManage from './foodManage'
 import myHead from '../../components/myhead'
 export default {
-  components: { saleList, shopInfo, foodManage, myHead },
-  methods: {
-    logout() {
-      this.$store.dispatch('UserLogout')
-      if (!this.$store.state.token) {
-        this.$message({ type: 'info', message: '注销成功' })
-        this.$router.push('login')
-      } else {
-        this.$message({ type: 'info', message: '注销失败，请重试' })
-      }
-    }
-  }
+  components: { saleList, shopInfo, foodManage, myHead }
 }
 </script>
 
